@@ -1,7 +1,9 @@
 package com.uplus.qualityweb.web;
 
+import com.uplus.qualityweb.config.auth.dto.SessionUser;
 import com.uplus.qualityweb.service.posts.PostsService;
 import com.uplus.qualityweb.web.dto.PostsResponseDto;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,11 +17,19 @@ import java.util.List;
 public class IndexController {
 
     private final PostsService postsService;
+    private final HttpSession httpSession;
 
     @GetMapping("/")
     public String index(Model model) {
         List<PostsResponseDto> allPosts = postsService.findAllDesc();
         model.addAttribute("posts", allPosts);
+
+        SessionUser user = (SessionUser) httpSession.getAttribute("user");
+
+        if (user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+
         return "index";
     }
 

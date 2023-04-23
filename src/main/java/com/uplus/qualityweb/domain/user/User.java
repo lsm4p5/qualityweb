@@ -2,11 +2,13 @@ package com.uplus.qualityweb.domain.user;
 
 import com.uplus.qualityweb.domain.BaseTimeEntity;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
+@Table(name="users")
 @Entity
 public class User extends BaseTimeEntity {
 
@@ -26,6 +28,22 @@ public class User extends BaseTimeEntity {
     @Column(nullable = false)
     private Role role;
 
+    @Builder
+    public User(String name, String email, String picture, Role role) {
+        this.name = name;
+        this.email = email;
+        this.picture = picture;
+        this.role = role;
+    }
 
+    public User update(String name, String picture) {
+        this.name = name;
+        this.picture = picture;
+        return this;
+    }
 
+    public String getRoleKey() {
+        return this.role.getKey();
+    }
 }
+
