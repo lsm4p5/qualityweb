@@ -1,5 +1,6 @@
 package com.uplus.qualityweb.domain.posts;
 
+import com.uplus.qualityweb.domain.BaseTimeEntity;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,7 +10,7 @@ import org.hibernate.id.factory.internal.IdentityGenerationTypeStrategy;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Posts {
+public class Posts extends BaseTimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
