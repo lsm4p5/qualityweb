@@ -13,9 +13,9 @@ public class HelloController {
     int a;
     int b;
 
-    int k;
+    int rrr;
+    int kkk;
 
-    int j;
 
     @GetMapping("/hello")
     public String hello() {
