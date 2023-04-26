@@ -13,6 +13,10 @@ public class HelloController {
     int a;
     int b;
 
+    int k;
+
+    int j;
+
     @GetMapping("/hello")
     public String hello() {
         return "hello";
